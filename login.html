@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+
+  <style>
+    body{
+      margin:0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #85edbb, #e2e8f0);
+    }
+
+    .background-img{
+      width:100vw;
+      height:100vh;
+     
+      background-repeat:no-repeat;
+      background-size:cover;
+      display:flex; 
+      justify-content:center;
+      align-items:center;
+    }
+
+    .box{
+      height:450px;
+      width:450px;
+      background-color:white;
+      border-radius:5px;
+      padding:25px;
+      text-align:center;
+      font-size:18px;
+    }
+
+    h1{
+      color:#eba51a;
+      margin-bottom:20px;
+    }
+
+    label{
+      display:block;
+      margin-top:15px;
+    }
+
+    input{
+      height:30px;
+      width:60%;
+      margin:8px 0;
+      border-radius:4px;
+      border:1px solid #ccc;
+      padding:5px;
+    }
+
+    .forgot{
+      margin-top:10px;
+      font-size:14px;
+    }
+
+    .forgot a{
+      text-decoration:none;
+      color:#1aebd6;
+    }
+
+    button{
+      margin-top:20px;
+      padding:8px 15px;
+      background-color:#ccdce8;
+      border:2px solid black;
+      cursor:pointer;
+    }
+
+    button:hover{
+      background-color:#b5c9d6;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="background-img">
+  <div class="box">
+    <h1>Login Page</h1>
+
+    <form onsubmit="return loginValidation()">
+      
+      <label for="email">Enter Email Id:</label>
+      <input id="email" name="email" type="text">
+
+      <label for="password">Enter Password:</label>
+      <input id="password" name="password" type="password">
+
+      <p class="forgot">
+        <a href="#">Forgot password?</a>
+      </p>
+
+      <button type="submit">Login</button>
+
+    </form>     
+  </div>
+</div>
+
+<script>
+function loginValidation(){
+  let email = document.getElementById("email");
+  let password = document.getElementById("password");
+
+  let rege = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  if(email.value.trim()=="" || password.value.trim()==""){
+    alert("No blank values allowed");
+    return false;
+  }
+
+  if(password.value.length < 5){
+    alert("Password must be at least 5 characters");
+    return false;
+  }
+
+  if(!rege.test(email.value)){
+    alert("Invalid email format");
+    return false;
+  }
+
+  alert("Login successful!");
+  return false;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sign Page</title>
+
+  <style>
+    body{
+      margin:0;
+      font-family: Arial, sans-serif;
+       background: linear-gradient(135deg, #85edbb, #e2e8f0);
+    }
+
+    .background-img{
+      width:100vw;
+      height:100vh;
+      background-repeat:no-repeat;
+      background-size:cover;
+      display:flex; 
+      justify-content:center;
+      align-items:center;
+    }
+
+    .box{
+      height:500px;
+      width:450px;
+      background-color:white;
+      border-radius:5px;
+      padding:25px;
+      text-align:center;
+      font-size:18px;
+    }
+
+    h1{
+      color:#eba51a;
+      margin-bottom:10px;
+    }
+
+    .login-text{
+      color:#1aebd6;
+      margin-bottom:20px;
+    }
+
+    input{
+      height:30px;
+      width:60%;
+      margin:8px 0;
+      border-radius:4px;
+      border:1px solid #ccc;
+      padding:5px;
+    }
+
+    label{
+      display:block;
+      margin-top:10px;
+    }
+
+    .error{
+      color:red;
+      font-size:14px;
+      visibility:hidden;
+    }
+
+    button{
+      margin-top:15px;
+      padding:8px 15px;
+      background-color:#ccdce8;
+      border:2px solid black;
+      cursor:pointer;
+      border-radius:2px;
+      
+    }
+
+    button:hover{
+      background-color:#b5c9d6;
+      background:white;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="background-img">
+  <div class="box">
+    <h1>Sign Up</h1>
+
+    <p class="login-text">
+      Already have an account?
+      <a href="login.html">Login Here</a>
+    </p>
+
+    <form action="login.html" onsubmit="return validation()">
+
+      <label for="fname">FIRST NAME:</label>
+      <input id="fname" type="text" name="fname">
+
+      <label for="pass">Password:</label>
+      <input id="pass" name="password" type="password">
+      <div id="invalid" class="error">invalid</div>
+
+      <label for="phonenumber">Phone number:</label>
+      <input id="phonenumber" type="text">
+      <div id="unvalid" class="error">invalid</div>
+
+      <label for="mail">E-MAIL:</label>
+      <input id="mail" name="mail" type="text">
+      <div id="notvalid" class="error">invalid</div>
+
+      <button type="submit">Submit</button>
+
+    </form>
+  </div>
+</div>
+
+<script>
+function validation(){
+  let firstname = document.getElementById("fname");
+  let password = document.getElementById("pass");
+  let phonenumber = document.getElementById("phonenumber");
+  let mail = document.getElementById("mail");
+
+  let regx = /^[7-9][0-9]{9}$/;
+  let rege = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  if (firstname.value.trim()=="" || password.value.trim()=="" || mail.value.trim()=="" || phonenumber.value.trim()==""){
+    alert("No blank values are allowed");
+    return false;
+  }
+
+  document.getElementById("invalid").style.visibility="hidden";
+  document.getElementById("unvalid").style.visibility="hidden";
+  document.getElementById("notvalid").style.visibility="hidden";
+
+  if(password.value.length < 5){
+    document.getElementById("invalid").innerText="Password too short";
+    document.getElementById("invalid").style.visibility="visible";
+    return false;
+  }
+
+  if(!regx.test(phonenumber.value)){
+    document.getElementById("unvalid").innerText="Invalid phone";
+    document.getElementById("unvalid").style.visibility="visible";
+    return false;
+  }
+
+  if(!rege.test(mail.value)){
+    document.getElementById("notvalid").innerText="Invalid email";
+    document.getElementById("notvalid").style.visibility="visible";
+    return false;
+  }
+
+  alert("Success!");
+  return true;
+}
+</script>
+
+</body>
+</html>
